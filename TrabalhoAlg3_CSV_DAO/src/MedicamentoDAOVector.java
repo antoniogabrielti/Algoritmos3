@@ -1,14 +1,19 @@
 
+import datastructures.IteradorVetor;
+import datastructures.Vetor;
+
+
 public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector> {
-	private Medicamento[]VetorMedicamento= new Medicamento[20];
+         private Vetor<Medicamento> VetorMedicamento = new Vetor<Medicamento>();
 	
 	public Medicamento getMedicamento(int codigo) {
 		Medicamento Encontrado=null;
-		for(Medicamento m : VetorMedicamento){
-			if(m.getCodigo()==codigo){
-				Encontrado=m;
-			}
-		}
+                IteradorVetor<Medicamento> Iterador = new IteradorVetor<Medicamento>(VetorMedicamento);
+		while(Iterador.hasNext()){
+                    if(Iterador.next().getCodigo()==codigo){
+                        Encontrado=Iterador.next();
+                    }
+                }
 		return Encontrado;
 	}
 
@@ -29,5 +34,5 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }
