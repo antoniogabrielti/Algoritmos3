@@ -62,6 +62,9 @@ public class IteradorVetor<T> implements Iterador<T> {
 		container.insert(current, dado);
 		current++;
 	}
+        public void SelectSort(){
+            
+        }
 	/**
 	 * Remove o dado atual apontado pelo iterador.
 	 */

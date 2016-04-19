@@ -18,8 +18,8 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
 
 	@Override
 	public void addMedicamento(Medicamento medicamento) {
-		while(Iterador.hasNext()){
-                    
+		if(!Iterador.hasPrevious()){
+                    Iterador.insert(medicamento);
                 }
 	}
 
