@@ -18,8 +18,9 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
 
 	@Override
 	public void addMedicamento(Medicamento medicamento) {
-		// TODO Auto-generated method stub
-		
+		while(Iterador.hasNext()){
+                    
+                }
 	}
 
 	@Override

@@ -118,4 +118,5 @@ public class Vetor<T> implements Iterable<T> {
 	public Iterador<T> iterator() {
 		return new IteradorVetor<T>(this);
 	}
+
 }
