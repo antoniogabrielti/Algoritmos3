@@ -5,11 +5,10 @@ import datastructures.Vetor;
 
 public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector> {
          private Vetor<Medicamento> VetorMedicamento = new Vetor<Medicamento>();
-	
+         private IteradorVetor<Medicamento> Iterador = new IteradorVetor<Medicamento>(VetorMedicamento);
 	public Medicamento getMedicamento(int codigo) {
 		Medicamento Encontrado=null;
-                IteradorVetor<Medicamento> Iterador = new IteradorVetor<Medicamento>(VetorMedicamento);
-		while(Iterador.hasNext()){
+               	while(Iterador.hasNext()){
                     if(Iterador.next().getCodigo()==codigo){
                         Encontrado=Iterador.next();
                     }
@@ -25,8 +24,11 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
 
 	@Override
 	public void removeMedicamento(int codigo) {
-		// TODO Auto-generated method stub
-		
+		while(Iterador.hasNext()){
+                    if(Iterador.next().getCodigo()==codigo){
+                        Iterador.remove();
+                    }
+                }
 	}
 
 	@Override
