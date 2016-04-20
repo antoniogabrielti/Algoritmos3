@@ -1,3 +1,5 @@
+package codigo;
+
 
 import datastructures.IteradorVetor;
 import datastructures.Vetor;
@@ -7,6 +9,7 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
          private Vetor<Medicamento> VetorMedicamento = new Vetor<Medicamento>();
          private IteradorVetor<Medicamento> Iterador = new IteradorVetor<Medicamento>(VetorMedicamento);
 	public Medicamento getMedicamento(int codigo) {
+                Iterador.SelectSort();
 		Medicamento Encontrado=null;
                	while(Iterador.hasNext()){
                     if(Iterador.next().getCodigo()==codigo){
@@ -18,9 +21,7 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
 
 	@Override
 	public void addMedicamento(Medicamento medicamento) {
-		if(!Iterador.hasPrevious()){
-                    Iterador.insert(medicamento);
-                }
+                Iterador.insert(medicamento);      
 	}
 
 	@Override
@@ -34,8 +35,9 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
 
 	@Override
 	public void loadData(CSVFile arquivo) {
-		// TODO Auto-generated method stub
-		
+                String Filename="caminho arquivo csv";
+		arquivo.Open(Filename);
+                addMedicamento((Medicamento)arquivo.readObject());
+		arquivo.Close();
 	}
-
 }

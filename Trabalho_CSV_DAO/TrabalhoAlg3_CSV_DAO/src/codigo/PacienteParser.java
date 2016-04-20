@@ -1,3 +1,5 @@
+package codigo;
+
 public class PacienteParser implements CSVParser<Paciente>{
 
 	@Override

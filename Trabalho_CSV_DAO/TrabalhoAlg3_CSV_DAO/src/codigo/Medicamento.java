@@ -1,3 +1,5 @@
+package codigo;
+
 
 public class Medicamento implements Comparable<Medicamento> {
 	private int codigo;

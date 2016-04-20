@@ -1,3 +1,5 @@
+package codigo;
+
 
 public interface PacienteDao {
 	Paciente getPaciente(String rg);

@@ -1,3 +1,5 @@
+package codigo;
+
 
 public interface MedicamentoDao<T> {
 	Medicamento getMedicamento(int codigo);
