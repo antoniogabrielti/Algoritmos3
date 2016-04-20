@@ -1,7 +1,7 @@
 package codigo;
 
 
-public class Paciente {
+public class Paciente implements Comparable<Paciente> {
 	private String rg;
 	private String nome;
 	private String dataNascimento;
@@ -19,4 +19,10 @@ public class Paciente {
 	public String getRg() {
 		return rg;
 	}
+
+    @Override
+    public int compareTo(Paciente OutroPaciente) {
+        return(this.getRg().compareTo(OutroPaciente.getRg()));
+    }
+        
 }

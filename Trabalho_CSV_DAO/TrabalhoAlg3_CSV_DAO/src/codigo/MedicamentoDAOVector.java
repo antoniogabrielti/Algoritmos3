@@ -35,9 +35,10 @@ public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector
 
 	@Override
 	public void loadData(CSVFile arquivo) {
+                CSVFile<Medicamento> arquivoMed=arquivo;
                 String Filename="caminho arquivo csv";
 		arquivo.Open(Filename);
-                addMedicamento((Medicamento)arquivo.readObject());
+                addMedicamento(arquivoMed.readObject());
 		arquivo.Close();
 	}
 }
