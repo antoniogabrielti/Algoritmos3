@@ -9,7 +9,7 @@ package datastructures;
  * 
  * @param <T> O tipo de dado armazenado na lista.
  */
-public class IteradorListaEncadeada<T> implements Iterador<T>
+public class IteradorListaEncadeada<T extends Comparable<T>> implements Iterador<T>
 {
 	private Node<T> iter;
 	private Node<T> previous;
@@ -75,7 +75,18 @@ public class IteradorListaEncadeada<T> implements Iterador<T>
 		}
 		return result;
 	}
-
+         public void InsertSort(T dado){
+             Node<T> Chave_Atual= new Node<T>(dado);
+             while(hasNext()){
+                 if(iter.getPrevious().getData().compareTo(Chave_Atual.getData())==1){
+                     iter.getPrevious().setNext(iter.getPrevious());
+                 }else{
+                     break;
+                 }
+                     iter.getPrevious().setNext(Chave_Atual);
+                 } 
+        }
+         
 	/**
 	 * Insere um elemento imediatamente antes do elemento
 	 * atual, caso esteja no final da lista, insere no fim

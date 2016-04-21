@@ -24,5 +24,10 @@ public class Paciente implements Comparable<Paciente> {
     public int compareTo(Paciente OutroPaciente) {
         return(this.getRg().compareTo(OutroPaciente.getRg()));
     }
-        
+
+    @Override
+    public String toString() {
+        return "Nome Paciente: "+nome+"\nRg: "+rg+"\nData Nascimento: "+dataNascimento;
+    }
+    
 }

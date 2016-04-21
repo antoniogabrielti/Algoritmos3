@@ -78,5 +78,4 @@ class Node<T> {
 		this.setPrevious(novo);
 		previous.setNext(novo);
 	}
-	
 }

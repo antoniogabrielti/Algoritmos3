@@ -6,7 +6,7 @@ package datastructures;
  *
  * @param <T> O tipo de dado armazenado na lista.
  */
-public class ListaEncadeada<T>
+public class ListaEncadeada<T extends Comparable<T>>
 	implements java.lang.Iterable<T>
 {
 
