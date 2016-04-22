@@ -6,16 +6,27 @@ import datastructures.Vetor;
 
 public class PacienteDaoVector implements PacienteDao<PacienteDaoVector> {
 
-         private Vetor<Paciente> VetorPacientes = new Vetor<Paciente>();
-         private IteradorVetor<Paciente> Iterador = new IteradorVetor<Paciente>(VetorPacientes);
+         private Vetor<Paciente> VetorPacientes;
+         private IteradorVetor<Paciente> Iterador;
+         
+         public PacienteDaoVector(){
+             VetorPacientes=new Vetor<Paciente>();
+             Iterador=new IteradorVetor<Paciente>(VetorPacientes);
+         }
+         public void getVetor(){
+             Iterador.MostrarVetor();
+         }
 
 	public Paciente getPaciente(String rg) {
                 Iterador.SelectSort();
-		Paciente Encontrado=null;
-               	while(Iterador.hasNext()){
-                    if(Iterador.next().getRg().equalsIgnoreCase(rg)){
-                        Encontrado=Iterador.next();
+                Paciente Encontrado=null;
+                int i=0;
+               	while(i<Iterador.getTamanho()){
+                    Paciente pac = Iterador.next();
+                    if(pac.getRg().equalsIgnoreCase(rg)){
+                        Encontrado=pac;
                     }
+                    i++;
                 }
 		return Encontrado;
 	}
@@ -27,12 +38,14 @@ public class PacienteDaoVector implements PacienteDao<PacienteDaoVector> {
 
 
 	public void removePaciente(String rg) {
-		while(Iterador.hasNext()){
-                    if(Iterador.next().getRg().equalsIgnoreCase(rg)){
+		int i=0;
+               	while(i<Iterador.getTamanho()){
+                    Paciente pac = Iterador.next();
+                    if(pac.getRg().equalsIgnoreCase(rg)){
                         Iterador.remove();
                     }
                 }
-	}
+        }
 
 
 	public void loadData(CSVFile arquivo) {

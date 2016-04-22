@@ -5,16 +5,27 @@ public class IteradorVetor<T extends Comparable<T>> implements Iterador<T> {
 
 	private Vetor<T> container;
 	private int current;
-	
+	 private int Index;
 	public IteradorVetor(Vetor<T> vetor) {
 		this.container = vetor;
 		this.current = 0;
+                this.Index=0;
 	}
+        public void MostrarVetor(){
+            SelectSort();
+            for(int i=0;i<container.getSize();i++){
+                System.out.println(container.get(i).toString());
+            
+            }
+        }
 	/**
 	 * Retorna verdadeiro se existem mais elementos na lista. 
 	 * @return True se existem mais elementos, false caso
 	 * contrario.
 	 */
+        public int getTamanho() {
+            return container.getSize();
+        }
 	@Override
 	public boolean hasNext() {
 		return current < container.getSize();
@@ -26,8 +37,8 @@ public class IteradorVetor<T extends Comparable<T>> implements Iterador<T> {
 	 */
 	@Override
 	public T next() {
-		T data = container.get(current);
-		current++;
+                T data = container.get(Index);
+		Index++;
 		return data;
 	}
 	/**
@@ -67,25 +78,18 @@ public class IteradorVetor<T extends Comparable<T>> implements Iterador<T> {
         public void SelectSort(){
         int IMenor;
         int Candidato;
-        int IndiceC;
-            
-        for(IMenor=0;IMenor<(current-1);++IMenor){
-            IndiceC=IMenor;
-            T MenorC = container.get(IMenor);
-               for(Candidato=IMenor+1;Candidato<current;++Candidato){
+           
+        for(IMenor=0;IMenor<current;IMenor++){
+            for(Candidato=IMenor+1;Candidato<current;Candidato++){
                   if(compareTo(container.get(IMenor),container.get(Candidato))==1){
-                     IndiceC=Candidato;
-                     MenorC=container.get(Candidato);
-                  }
-                   swap(container.get(IMenor),container.get(IndiceC));
+                     T temp = container.get(Candidato);
+                     container.remove(Candidato);
+                     container.insert(Candidato, container.get(IMenor));
+                     container.remove(IMenor);
+                     container.insert(IMenor, temp);
+                  }      
                }
             }
-        }
-        
-        private void swap(T X, T Y) {
-            T temp = X;
-            X=Y;
-            Y=temp;
         }
 
     
