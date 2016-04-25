@@ -24,7 +24,7 @@ public class PacienteDAOLista implements PacienteDao<PacienteDAOLista> {
     }
     
     public ListaEncadeada<Paciente> getListaPaciente(){
-        return ListaPaciente;
+        return IteradorPaciente.getList();
     }
     
     @Override

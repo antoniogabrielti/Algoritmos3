@@ -1,5 +1,6 @@
 package datastructures;
 
+
 /**
  * Implementa um iterador para a lista encadeada. Esta
  * classe esta no mesmo pacote da classe lista para poder
@@ -22,6 +23,10 @@ public class IteradorListaEncadeada<T extends Comparable<T>> implements Iterador
 		this.previous = null;
 	}
 
+    public ListaEncadeada<T> getList() {
+        return list;
+    }
+        
 	/**
 	 * Retorna verdadeiro se existem mais elementos na lista. 
 	 * @return True se existem mais elementos, false caso
@@ -95,15 +100,17 @@ public class IteradorListaEncadeada<T extends Comparable<T>> implements Iterador
 	 */
 	@Override
 	public void insert(T dado) {
-		if (!hasNext()) {
+		if (list.getTam()==0) {
 			list.append(dado);
-		} else
-		if (!hasPrevious()){
-			list.prepend(dado);
-		} else {
-			iter.insertBefore(dado);
-		}
-	}
+		} else{
+                    while(hasNext()){
+                        T aux = iter.getNext().getData();
+                        if(aux.compareTo(dado)<1){
+                            iter.insertBefore(dado);
+                        }
+                    }
+                }
+ 	}
 
 	/**
 	 * Remove o dado atual apontado pelo iterador.

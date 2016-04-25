@@ -12,7 +12,13 @@ public class ListaEncadeada<T extends Comparable<T>>
 
 	private Node<T> head;
 	private Node<T> tail;
+        private int tam=0;
 
+    public int getTam() {
+        return tam;
+    }
+
+ 
 	/**
 	 * Cria um iterador para a lista encadeada.
 	 * 
@@ -44,6 +50,7 @@ public class ListaEncadeada<T extends Comparable<T>>
 			tail.setNext(novo);
 		}
 		tail = novo;
+                tam++;
 	}
 
 	/**
@@ -59,6 +66,7 @@ public class ListaEncadeada<T extends Comparable<T>>
 			head.setPrevious(novo);
 		}
 		head = novo;
+                tam++;
 	}
 
 	/**
