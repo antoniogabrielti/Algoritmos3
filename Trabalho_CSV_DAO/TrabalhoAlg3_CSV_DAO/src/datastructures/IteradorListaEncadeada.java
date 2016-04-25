@@ -78,7 +78,7 @@ public class IteradorListaEncadeada<T extends Comparable<T>> implements Iterador
          public void InsertSort(T dado){
              Node<T> Chave_Atual= new Node<T>(dado);
              while(hasNext()){
-                 if(iter.getPrevious().getData().compareTo(Chave_Atual.getData())==1){
+                 if(iter.getNext().getData().compareTo(Chave_Atual.getData())==1){
                      iter.getPrevious().setNext(iter.getPrevious());
                  }else{
                      break;

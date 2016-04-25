@@ -6,32 +6,45 @@ import datastructures.Vetor;
 
 
 public class MedicamentoDAOVector implements MedicamentoDao<MedicamentoDAOVector> {
-         private Vetor<Medicamento> VetorMedicamento = new Vetor<Medicamento>();
-         private IteradorVetor<Medicamento> Iterador = new IteradorVetor<Medicamento>(VetorMedicamento);
+  
+         private Vetor<Medicamento> VetorMedicamentos;
+         private IteradorVetor<Medicamento> IteradorMedicamento;
+         
+         public MedicamentoDAOVector(){
+             VetorMedicamentos=new Vetor<Medicamento>();
+             IteradorMedicamento=new IteradorVetor<Medicamento>(VetorMedicamentos);
+         }
+
+        public Vetor<Medicamento> getVetorMedicamentos() {
+           IteradorMedicamento.SelectSort();
+          return VetorMedicamentos;
+        }
+
 	public Medicamento getMedicamento(int codigo) {
-                Iterador.SelectSort();
-		Medicamento Encontrado=null;
-               	while(Iterador.hasNext()){
-                    if(Iterador.next().getCodigo()==codigo){
-                        Encontrado=Iterador.next();
+                IteradorMedicamento.SelectSort();
+                Medicamento Encontrado=null;
+               	while(IteradorMedicamento.hasNext()){
+                    Medicamento med = IteradorMedicamento.next();
+                    if(med.getCodigo()==codigo){
+                        Encontrado=med;
                     }
                 }
 		return Encontrado;
 	}
 
-	@Override
+
 	public void addMedicamento(Medicamento medicamento) {
-                Iterador.insert(medicamento);      
+                IteradorMedicamento.insert(medicamento);      
 	}
 
-	@Override
+
 	public void removeMedicamento(int codigo) {
-		while(Iterador.hasNext()){
-                    if(Iterador.next().getCodigo()==codigo){
-                        Iterador.remove();
-                    }
+            while(IteradorMedicamento.hasPrevious()){
+                if(IteradorMedicamento.previous().getCodigo()==codigo){
+                    IteradorMedicamento.remove();
                 }
-	}
+            }
+        }
 
 	@Override
 	public void loadData(CSVFile arquivo) {

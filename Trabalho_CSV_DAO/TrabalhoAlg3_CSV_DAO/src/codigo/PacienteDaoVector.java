@@ -1,7 +1,9 @@
 package codigo;
 
+
 import datastructures.IteradorVetor;
 import datastructures.Vetor;
+import java.util.Iterator;
 
 
 public class PacienteDaoVector implements PacienteDao<PacienteDaoVector> {
@@ -13,20 +15,20 @@ public class PacienteDaoVector implements PacienteDao<PacienteDaoVector> {
              VetorPacientes=new Vetor<Paciente>();
              Iterador=new IteradorVetor<Paciente>(VetorPacientes);
          }
-         public void getVetor(){
-             Iterador.MostrarVetor();
-         }
+
+        public Vetor<Paciente> getVetorPacientes() {
+           Iterador.SelectSort();
+          return VetorPacientes;
+        }
 
 	public Paciente getPaciente(String rg) {
                 Iterador.SelectSort();
                 Paciente Encontrado=null;
-                int i=0;
-               	while(i<Iterador.getTamanho()){
+               	while(Iterador.hasNext()){
                     Paciente pac = Iterador.next();
                     if(pac.getRg().equalsIgnoreCase(rg)){
                         Encontrado=pac;
                     }
-                    i++;
                 }
 		return Encontrado;
 	}
@@ -38,13 +40,11 @@ public class PacienteDaoVector implements PacienteDao<PacienteDaoVector> {
 
 
 	public void removePaciente(String rg) {
-		int i=0;
-               	while(i<Iterador.getTamanho()){
-                    Paciente pac = Iterador.next();
-                    if(pac.getRg().equalsIgnoreCase(rg)){
-                        Iterador.remove();
-                    }
+            while(Iterador.hasPrevious()){
+                if(Iterador.previous().getRg().equals(rg)){
+                    Iterador.remove();
                 }
+            }
         }
 
 

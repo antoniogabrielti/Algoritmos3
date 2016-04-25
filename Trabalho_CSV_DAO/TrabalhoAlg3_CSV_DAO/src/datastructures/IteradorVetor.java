@@ -2,30 +2,19 @@ package datastructures;
 
 
 public class IteradorVetor<T extends Comparable<T>> implements Iterador<T> {
-
 	private Vetor<T> container;
 	private int current;
-	 private int Index;
+	
 	public IteradorVetor(Vetor<T> vetor) {
 		this.container = vetor;
 		this.current = 0;
-                this.Index=0;
 	}
-        public void MostrarVetor(){
-            SelectSort();
-            for(int i=0;i<container.getSize();i++){
-                System.out.println(container.get(i).toString());
-            
-            }
-        }
+        
 	/**
 	 * Retorna verdadeiro se existem mais elementos na lista. 
 	 * @return True se existem mais elementos, false caso
 	 * contrario.
 	 */
-        public int getTamanho() {
-            return container.getSize();
-        }
 	@Override
 	public boolean hasNext() {
 		return current < container.getSize();
@@ -37,8 +26,8 @@ public class IteradorVetor<T extends Comparable<T>> implements Iterador<T> {
 	 */
 	@Override
 	public T next() {
-                T data = container.get(Index);
-		Index++;
+		T data = container.get(current);
+		current++;
 		return data;
 	}
 	/**
@@ -74,6 +63,13 @@ public class IteradorVetor<T extends Comparable<T>> implements Iterador<T> {
 		container.insert(current, dado);
 		current++;
 	}
+	/**
+	 * Remove o dado atual apontado pelo iterador.
+	 */
+	@Override
+	public void remove() {
+		container.remove(current);
+	}	
 
         public void SelectSort(){
         int IMenor;
@@ -92,16 +88,10 @@ public class IteradorVetor<T extends Comparable<T>> implements Iterador<T> {
             }
         }
 
-    
-	/**
-	 * Remove o dado atual apontado pelo iterador.
-	 */
-	@Override
-	public void remove() {
-		container.remove(current-1);
-	}	
+	
 
     private int compareTo(T primeiro, T proximo) {
         return(primeiro.compareTo(proximo));
     }
+    
 }

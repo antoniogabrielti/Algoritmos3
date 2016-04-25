@@ -5,24 +5,31 @@ import datastructures.IteradorListaEncadeada;
 import datastructures.ListaEncadeada;
 
 public class PacienteDAOLista implements PacienteDao<PacienteDAOLista> {
-    ListaEncadeada<Paciente> ListaPaciente = new ListaEncadeada<Paciente>();
-    IteradorListaEncadeada<Paciente> IteradorPaciente = new IteradorListaEncadeada(ListaPaciente);
+    private ListaEncadeada<Paciente> ListaPaciente;
+    private IteradorListaEncadeada<Paciente> IteradorPaciente;
+    
+    public PacienteDAOLista(){
+        ListaPaciente=new ListaEncadeada<Paciente>();
+        IteradorPaciente = new IteradorListaEncadeada(ListaPaciente);
+    }
     @Override
     public Paciente getPaciente(String rg) {
                 Paciente Encontrado=null;
                	while(IteradorPaciente.hasNext()){
-                    if(IteradorPaciente.next().getRg().equals(rg)){
+                    if(IteradorPaciente.previous().getRg().equals(rg)){
                         Encontrado=IteradorPaciente.next();
                     }
                 }
 		return Encontrado;
     }
-    public ListaEncadeada<Paciente> getLista(){
+    
+    public ListaEncadeada<Paciente> getListaPaciente(){
         return ListaPaciente;
     }
+    
     @Override
     public void addPaciente(Paciente paciente) {
-        IteradorPaciente.InsertSort(paciente);
+        IteradorPaciente.insert(paciente);
     }
 
     @Override
