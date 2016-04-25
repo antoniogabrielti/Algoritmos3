@@ -21,5 +21,5 @@ public class TestAplicationLista {
 		for (Paciente dado : lista)
 			System.out.println(dado.toString());
 		System.out.println("-----------------");
-	}
+	}// Emilly Salvador de Mattos
 }
